@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Edit Tasks</h3>
+<div class="row">
+    <form action="{{ url_for('update_task', task_id=task._id) }}" method="POST" class="col s12">
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">poll</i>
+                <select name="category_name" id="category_name">
+                    <option value="" disabled selected>Choose Category</option>
+                    {% for category in categories %}
+                    {% if category.category_name == task.category_name %}
+                    <option value="{{category.category_name}}" selected>{{category.category_name}}</option>
+                    {% else %}
+                    <option value="{{category.category_name}}">{{category.category_name}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+                <label for="category_name">Task Category</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">assignment</i>
+                <input type="text" name="task_name" id="task_name" class="validate" value="{{task.task_name}}">
+                <label for="task_name">Task Name</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">subject</i>
+                <textarea name="task_description" id="task_description"
+                    class="materialize-textarea">{{task.task_description}}</textarea>
+                <label for="task_description">Task Description</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">today</i>
+                <input type="text" name="due_date" id="due_date" class="datepicker" value="{{task.due_date}}"
+                    autocomplete="off">
+                <label for="due_date">Due Date</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="switch">
+                <label>
+                    {% if task.is_urgent %}
+                    <input type="checkbox" name="is_urgent" id="is_urgent" checked>
+                    {% else %}
+                    <input type="checkbox" name="is_urgent" id="is_urgent">
+                    {% endif %}
+                    <span class="lever"></span>
+                    URGENT!
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <button class="btn waves-effect waves-light purple" type="submit" name="action">Edit Task
+                <i class="material-icons right">playlist_add</i>
+            </button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}
