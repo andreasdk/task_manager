@@ -4,7 +4,7 @@ backports.functools-lru-cache==1.5
 Click==7.0
 CodeIntel==0.9.3
 configparser==3.7.4
-cryptography==2.1.4
+cryptography==3.2
 Django==1.11.10
 dnspython==1.16.0
 enum34==1.1.6
